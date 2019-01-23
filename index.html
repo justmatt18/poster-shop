@@ -18,6 +18,10 @@
                 <img src="public/logo.png">
                 <h1>Vue.js Poster Shop</h1>
             </div>
+            <form class="search-bar" v-on:submit.prevent="onSubmit">
+                <input type="text" placeholder="Search for posters" required v-model="search">
+                <input type="submit" value="Search" class="btn">
+              </form>
         </div>
     </div>
     <div class="main container">
@@ -26,12 +30,12 @@
                 <div>
                     <h4 class="product-title">
                         {{ product.title }}  
-                        <button 
-                            @click="addToCart(product)" 
-                            class="add-to-cart btn">
-                            Add to Cart
-                        </button>
                     </h4>
+                    <button 
+                        @click="addToCart(product)" 
+                        class="add-to-cart btn">
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
@@ -41,13 +45,15 @@
                 <li v-for="item in cart" v-bind:key="item.id" class="cart-item">
                     <div class="item-title">{{ item.title }}</div>
                     <span class="item-qty">
-                        {{item.price}} x {{ item.qty}}
+                        {{item.price | currency}} x {{ item.qty}}
                     </span>
+                    <button class="btn" @click= "inc(item)">+</button>
+                    <button class="btn" @click= "dec(item)">-</button>
                 </li>
             </ul>
             <div v-if="cart.length">
                 <div class="cart-total">
-                    Total: ${{ total }}
+                    Total: {{ total | currency }}
                 </div>
             </div>
             <div v-else class="empty-cart">
@@ -60,6 +66,7 @@
 <!-- Scripts -->
 <script src="/reload/reload.js"></script>
 <script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript" src="node_modules/vue-resource/dist/vue-resource.js"></script>
 <script type="text/javascript" src="public/script.js"></script>
 
 </body>
