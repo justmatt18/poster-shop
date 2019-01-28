@@ -3,11 +3,7 @@ new Vue ({
     data() {
         return {
             total: 0,
-            products: [
-                { title: "Product 1" , id: 1, price: 5.99},
-                { title: "Product 2" , id: 2, price: 10.99},
-                { title: "Product 3" , id: 3, price: 15.50},
-            ],
+            products: [],
             cart: [],
             search: '',
 
